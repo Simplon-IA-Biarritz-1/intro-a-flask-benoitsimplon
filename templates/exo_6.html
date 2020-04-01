@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>Exercice 6: liste utilisateurs</title>
+          <meta charset="utf-8" />
+          <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+          <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+    	<section class="container">
+            <header>
+                <h1>Liste des utilisateurs </h1>
+            </header>
+
+              <div class="content">
+                {% for user in liste_user %}
+                <p> {{user}} </p>
+                {% endfor %}
+              </div>
+
+	            <div class="content">
+	            	<a href="{{ url_for('hello') }}"> Retourner à la page d'accueil </a>
+	            </div>
+
+            <footer class="footer">
+                <p><br />
+                </p>
+               <em>Benoit Barbereau</em>
+            </footer>
+
+        </section>
+    </body>
+</html>

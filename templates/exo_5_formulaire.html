@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Exercice 4: formulaire</title>
+          <meta charset="utf-8" />
+          <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+          <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+    <section class="container">
+
+            <header>
+                <h1>Formulaire exercice 5</h1>
+            </header>
+            <div class="content">
+                 <form action="./exo5" method="POST"> 
+
+                   <fieldset>
+                       <legend>Votre sexe</legend> <!-- Titre du fieldset -->
+                       <p>
+                           <input type="radio" name="sexe" value="homme" id="homme" /> <label for="homme">Homme</label>
+                           <input type="radio" name="sexe" value="femme" id="femme" /> <label for="femme">Femme</label>  
+                       </p>
+                   </fieldset>  
+                 
+                   <fieldset>
+                       <legend>Vos infos</legend> <!-- Titre du fieldset --> 
+                       <p>
+                       <label for="nom">Quel est votre nom ?</label>
+                       <input type="text" name="nom" id="nom" autofocus required/>
+                       </p>
+                       <p>
+                       <label for="prenom">Quel est votre prénom ?</label>
+                       <input type="text" name="prenom" id="prenom" autofocus required />
+                       </p>
+                       <p>
+                       <label for="username">Quel est votre pseudo?</label>
+                       <input type="username" name="username" id="username" autofocus required />
+                       </p>
+                       <p>
+                       <button type="submit">OK</button>
+                       </p>
+                       <br />
+                   </fieldset>
+                </form>
+            </div>
+
+            <div class="content">
+              <p>{{control}}</p> 
+            </div>
+
+            <footer class="footer">
+                <p><br />
+                </p>
+               <em>Benoit Barbereau</em>
+            </footer>
+
+        </section>
+    </body>
+</html>

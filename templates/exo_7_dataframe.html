@@ -1,0 +1,33 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>Exercice 7: Stats</title>
+          <meta charset="utf-8" />
+          <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+          <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+    	<section class="container">
+            <header>
+                <h1>Statistique du dataframe {{titre_dataframe}}</h1>
+            </header>
+
+              <div class="content dataframe-container">
+                <p> {{dataframe|safe}}</p>
+              </div>
+
+	            <div class="content">
+	            	<a href="{{ url_for('hello') }}"> Retourner à la page d'accueil </a>
+	            </div>
+
+            <footer class="footer">
+                <p><br />
+                </p>
+               <em>Benoit Barbereau</em>
+            </footer>
+
+        </section>
+    </body>
+</html>

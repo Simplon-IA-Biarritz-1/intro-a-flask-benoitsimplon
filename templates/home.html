@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+    <head>
+      <title>Exercice flask de benoit</title>
+      	  <meta charset="utf-8" />
+		  <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+		  <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    	<section class="container">
+
+    		<header>
+    			<h1>Exercices FLASK - Benoit</h1>
+	    			<p>
+				    Aller directement :<br />
+				    <nav>
+					    <ul>
+						    <li><a href="#exo_1">Exercice n°1</a><br /></li>
+						    <li><a href="#exo_2">Exercice n°2</a><br /></li>
+						    <li><a href="#exo_3">Exercice n°3</a><br /></li>
+						    <li><a href="#exo_4">Exercice n°4</a><br /></li>
+						    <li><a href="#exo_5">Exercice n°5</a><br /></li>
+						    <li><a href="#exo_6">Exercice n°6</a><br /></li>
+						    <li><a href="#exo_7">Exercice n°7</a><br /></li>
+						    <li><a href="#exo_8">Exercice n°8</a><br /></li>
+						</ul>
+					</nav>
+					</p>
+    		</header>
+
+
+
+	    	<div class="content">
+		    	<h2 id="exo_1">Exercice 1</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Faire avec Flask une page internet sur laquelle est écrit "Hello World!"</p>
+		    	<h3>Résultat </h3>
+		    	<div class="reponse">{{ message }}</div>
+			</div>
+
+	    	<div class="content">
+		    	<h2 id="exo_2">Exercice 2</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Faire avec Flask une page internet sur laquelle est écrit "Hello World!" en modifiant le style (pour cela il faut donc passer par une par une page html et fichier css pour le style)</p>
+		    	<h3>Résultat </h3>
+		    	<div class="exo_2">{{ message }}</div>	 
+			</div>
+
+	    	<div class="content">
+		    	<h2 id="exo_3">Exercice 3</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Faire avec Flask un site web contenant 2 pages (une page d'accueil et une seconde page) avec bien sûr la possibilité de passer de l'une à l'autre.</p>
+		    	<h3>Résultat </h3>
+		    	<div class="reponse">
+		    	<p>Page de l'exercice 3 <a href="{{ url_for('exo_3') }}">ici</a></p>
+		    	</div>	
+			</div>
+
+	    	<div class="content">
+		    	<h2 id="exo_4">Exercice 4</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Faire avec Flask une page /test-formulaire qui contient un formulaire permettant de rentrer le prénom, le nom, le sexe de l'utilisateur ainsi qu'un pseudo. Une fois les informations renseignées, une nouvelle page doit afficher :
+				"Bonjour Mr {prénom} {nom}, votre nom d'utilisateur est {pseudo}" si c'est un homme et "Bonjour Mme..." sinon.</p>
+		    	<h3>Résultat </h3>
+		    	<div class="reponse">
+		    	<p>Accèdez au formulaire
+		    	<a href="{{ url_for('exo_4') }}">ici</a>
+		    	</p>
+		    	</div>				
+			</div>
+
+	    	<div class="content">
+		    	<h2 id="exo_5">Exercice 5</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Créer une base de données <mark>NoSQL</mark> contenant une table users avec comme colonnes : prenom, nom, sexe, pseudo.
+				Modifier /test-formulaire pour que désormais à chaque fois qu'un utilisateur rentre ses informations, celles-ci soient ajoutées dans la base de donnée. Pour cela il faudra utiliser un client sql python pour se connecter à la base de donnée.</p>
+				<p>Il faudra par ailleurs gérer le cas d’un pseudo déjà existant...</p>
+		    	<h3>Résultat </h3>
+		    	<div class="reponse">
+		    	<p>Accèdez au formulaire + BDD
+		    	<a href="{{ url_for('exo_5') }}">ici</a>
+		    	</p>
+		    	</div>				
+			</div>
+
+	    	<div class="content">
+		    	<h2 id="exo_6">Exercice 6</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Faire une page /utilisateurs-inscrits qui permet de lister tous les noms d'utilisateurs présents dans la base de donnée.</p>
+		    	<h3>Résultat </h3>
+		    	<div class="reponse">
+		    	<p>Accèdez à la page /utilisateurs-inscrits 
+		    	<a href="{{ url_for('exo_6') }}">ici</a>
+		    	</p>
+		    	</div>				
+			</div>
+
+	    	<div class="content">
+		    	<h2 id="exo_7">Exercice 7</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Faire une page avec Flask qui affiche les statistiques de base d'un dataframe que l'utilisateur aurait chargé grâce à un formulaire.</p>
+		    	<h3>Résultat </h3>
+		    	<div class="reponse">
+		    	<p>Accèdez à la page stats 
+		    	<a href="{{ url_for('exo_7') }}">ici</a>
+		    	</p>
+		    	</div>				
+			</div>				
+
+	    	<div class="content">
+		    	<h2 id="exo_8">Exercice 8</h1>
+		    	<h3>Consigne </h3>
+		    	<p>Charger un modèle entrainé sur MNIST et afficher la prédiction du modèle lorsque le user charge une image via un formulaire.</p>
+		    	<h3>Résultat </h3>
+		    	<div class="reponse">
+		    	<p>Accèdez à la page prédiction 
+		    	<a href="{{ url_for('exo_8') }}">ici</a>
+		    	</p>
+		    	</div>				
+			</div>	
+
+
+			<footer class="footer">
+			   	<p>C'est fini<br />
+				</p>
+			   <em>Benoit Barbereau</em>
+			</footer>
+
+		</section>
+    </body>
+</html>
