@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request
 from flask_pymongo import PyMongo
-import bdd # module fait maison, gère relation avec base de donnée NoSQL
+import bdd # hand made
 import json
 import pandas as pd
 import numpy as np
 import os
+import psycopg2
 cwd = os.getcwd()
 
 
@@ -95,10 +96,44 @@ try:
         stats = data.describe().to_html()
         return render_template("exo_7_dataframe.html", dataframe = stats, titre_dataframe = file )
 
-    # exercice 8
-    @app.route('/exo8')
-    def exo_8():
-        return render_template("exo_8.html")
+    # exercice 8 : desssiner chiffre etr le faire deviner par algo
+    @app.route('/exo8', methods=['GET', 'POST'])
+    def paintapp():
+        if request.method == 'GET':
+            return render_template("paint.html")
+        if request.method == 'POST':
+            filename = request.form['save_fname']
+            data = request.form['save_cdata']
+            canvas_image = request.form['save_image']
+            conn = psycopg2.connect(database="paintmyown", user = "nidhin")
+            cur = conn.cursor()
+            cur.execute("INSERT INTO files (name, data, canvas_image) VALUES (%s, %s, %s)", [filename, data, canvas_image])
+            conn.commit()
+            conn.close()
+            return redirect(url_for('save'))        
+            
+            
+    @app.route('/save', methods=['GET', 'POST'])
+    def save():
+        conn = psycopg2.connect(database="paintmyown", user="nidhin")
+        cur = conn.cursor()
+        cur.execute("SELECT id, name, data, canvas_image from files")
+        files = cur.fetchall()
+        conn.close()
+        return render_template("save.html", files = files )
+        
+    @app.route('/search', methods=['GET', 'POST'])
+    def search():
+        if request.method == 'GET':
+            return render_template("search.html")
+        if request.method == 'POST':
+            filename = request.form['fname']
+            conn = psycopg2.connect(database="paintmyown", user="nidhin")
+            cur = conn.cursor()
+            cur.execute("select id, name, data, canvas_image from files")
+            files = cur.fetchall()
+            conn.close()
+            return render_template("search.html", files=files, filename=filename)
 
 
 
