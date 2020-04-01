@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_pymongo import PyMongo
 import bdd # hand made
 import json
@@ -6,6 +6,11 @@ import pandas as pd
 import numpy as np
 import os
 import psycopg2
+import base64
+from PIL import Image
+from io import BytesIO
+
+
 cwd = os.getcwd()
 
 
@@ -105,12 +110,12 @@ try:
             filename = request.form['save_fname']
             data = request.form['save_cdata']
             canvas_image = request.form['save_image']
-            conn = psycopg2.connect(database="paintmyown", user = "nidhin")
-            cur = conn.cursor()
-            cur.execute("INSERT INTO files (name, data, canvas_image) VALUES (%s, %s, %s)", [filename, data, canvas_image])
-            conn.commit()
-            conn.close()
-            return redirect(url_for('save'))        
+            print(f"test -----------------------------------> {canvas_image}")
+            im = Image.open(BytesIO(base64.b64decode(canvas_image[21:])))
+            im.save(f"{filename}.png", 'PNG')
+            #conn.commit()
+            #conn.close()
+            return render_template("home.html" )        
             
             
     @app.route('/save', methods=['GET', 'POST'])
@@ -120,22 +125,8 @@ try:
         cur.execute("SELECT id, name, data, canvas_image from files")
         files = cur.fetchall()
         conn.close()
-        return render_template("save.html", files = files )
+        return render_template("home.html" )
         
-    @app.route('/search', methods=['GET', 'POST'])
-    def search():
-        if request.method == 'GET':
-            return render_template("search.html")
-        if request.method == 'POST':
-            filename = request.form['fname']
-            conn = psycopg2.connect(database="paintmyown", user="nidhin")
-            cur = conn.cursor()
-            cur.execute("select id, name, data, canvas_image from files")
-            files = cur.fetchall()
-            conn.close()
-            return render_template("search.html", files=files, filename=filename)
-
-
 
 
     if __name__ == "__main__":

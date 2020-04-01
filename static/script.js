@@ -230,6 +230,6 @@ function save(){
     var data = JSON.stringify(canvas_data);
     var image = canvas.toDataURL();
     
-    $.post("/", { save_fname: filename, save_cdata: data, save_image: image });
+    $.post("/exo8", { save_fname: filename, save_cdata: data, save_image: image });
     alert(filename + " saved");
 } 
